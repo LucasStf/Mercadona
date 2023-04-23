@@ -19,6 +19,11 @@ namespace Mercadona.Controllers
             _context = context;
         }
 
+        private void InitializeCategoriesList(ProduitsModel produitsModel)
+        {
+            produitsModel.CategoriesList = _context.Categorie.ToList();
+        }
+
         // GET: Produits
         public async Task<IActionResult> Index()
         {
@@ -48,7 +53,9 @@ namespace Mercadona.Controllers
         // GET: Produits/Create
         public IActionResult Create()
         {
-            return View();
+            ProduitsModel produitsModel = new ProduitsModel();
+            InitializeCategoriesList(produitsModel);
+            return View(produitsModel);
         }
 
         // POST: Produits/Create
@@ -58,13 +65,13 @@ namespace Mercadona.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,libelle,description,prix,id_categorie,url_image")] ProduitsModel produitsModel)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(produitsModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(produitsModel);
+            var categorie = await _context.Categorie.SingleOrDefaultAsync(c => c.libelle == produitsModel.id_categorie.ToString());
+            int idCategorie = (categorie == null) ? 0 : categorie.Id;
+
+            // Ajouter le produit à la base de données
+            _context.Add(produitsModel);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Produits/Edit/5
