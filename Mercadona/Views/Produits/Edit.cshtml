@@ -1,0 +1,54 @@
+﻿@model Mercadona.Models.ProduitsModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>ProduitsModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="libelle" class="control-label"></label>
+                <input asp-for="libelle" class="form-control" />
+                <span asp-validation-for="libelle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="description" class="control-label"></label>
+                <input asp-for="description" class="form-control" />
+                <span asp-validation-for="description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prix" class="control-label"></label>
+                <input asp-for="prix" class="form-control" />
+                <span asp-validation-for="prix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="id_categorie" class="control-label"></label>
+                <input asp-for="id_categorie" class="form-control" />
+                <span asp-validation-for="id_categorie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="url_image" class="control-label"></label>
+                <input asp-for="url_image" class="form-control" />
+                <span asp-validation-for="url_image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

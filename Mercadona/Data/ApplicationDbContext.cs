@@ -11,9 +11,9 @@ namespace Mercadona.Data
         {
         }
 
-        DbSet<ProduitsModel> Produits { get; set; }
-        DbSet<CategorieModel> Categorie { get; set; }
-        DbSet<PromotionsModel> Promotions { get; set;}
-        DbSet<PromotionsProduitsModel> PromotionsProduits { get; set; }
+        public DbSet<ProduitsModel> Produits { get; set; }
+        public DbSet<CategorieModel> Categorie { get; set; }
+        public DbSet<PromotionsModel> Promotions { get; set;}
+        public DbSet<PromotionsProduitsModel> PromotionsProduits { get; set; }
     }
 }
