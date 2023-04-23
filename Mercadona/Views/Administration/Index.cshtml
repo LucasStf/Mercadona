@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Administration";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="card-group">
+    <div class="card">
+        <img class="card-img-top" src="https://via.placeholder.com/150x150.png?text=Produits" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Gérer les produits</h5>
+            <a asp-controller="Produits" asp-action="Index" class="btn btn-primary">Accéder</a>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="https://via.placeholder.com/150x150.png?text=Promotions" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Gérer les promotions</h5>
+            <a asp-controller="Promotions" asp-action="Index" class="btn btn-primary">Accéder</a>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="https://via.placeholder.com/150x150.png?text=Produits+en+promotion" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Gérer les produits en promotion</h5>
+            <a asp-controller="PromotionsProduits" asp-action="Index" class="btn btn-primary">Accéder</a>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="https://via.placeholder.com/150x150.png?text=Catégories" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Gérer les catégories</h5>
+            <a asp-controller="Categorie" asp-action="Index" class="btn btn-primary">Accéder</a>
+        </div>
+    </div>
+</div>

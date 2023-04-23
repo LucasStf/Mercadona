@@ -19,6 +19,17 @@ namespace Mercadona.Controllers
             _context = context;
         }
 
+        private void InitializeProduits(PromotionsProduitsModel model)
+        {
+            model.Produits = _context.Produits.ToList();
+        }
+
+        private void InitializePromotions(PromotionsProduitsModel model)
+        {
+            model.Promotions = _context.Promotions.ToList();
+        }
+
+
         // GET: PromotionsProduits
         public async Task<IActionResult> Index()
         {
@@ -48,7 +59,10 @@ namespace Mercadona.Controllers
         // GET: PromotionsProduits/Create
         public IActionResult Create()
         {
-            return View();
+            PromotionsProduitsModel model = new PromotionsProduitsModel();
+            InitializeProduits(model);
+            InitializePromotions(model);
+            return View(model);
         }
 
         // POST: PromotionsProduits/Create
@@ -58,13 +72,17 @@ namespace Mercadona.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,IdProduit,IdPromotion,prixPromo")] PromotionsProduitsModel promotionsProduitsModel)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(promotionsProduitsModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(promotionsProduitsModel);
+            var produit = _context.Produits.Find(promotionsProduitsModel.IdProduit);
+            var promotion = _context.Promotions.Find(promotionsProduitsModel.IdPromotion);
+
+            // Calculer le prix en promotion
+            var prixEnPromo = produit.prix - (produit.prix * promotion.PourcentageRemise / 100);
+
+            promotionsProduitsModel.prixPromo = (int)prixEnPromo;
+
+            _context.Add(promotionsProduitsModel);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: PromotionsProduits/Edit/5

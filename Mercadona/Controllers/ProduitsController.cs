@@ -65,8 +65,8 @@ namespace Mercadona.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,libelle,description,prix,id_categorie,url_image")] ProduitsModel produitsModel)
         {
-            var categorie = await _context.Categorie.SingleOrDefaultAsync(c => c.libelle == produitsModel.id_categorie.ToString());
-            int idCategorie = (categorie == null) ? 0 : categorie.Id;
+            //var categorie = await _context.Categorie.SingleOrDefaultAsync(c => c.libelle == produitsModel.id_categorie.ToString());
+            //int idCategorie = (categorie == null) ? 0 : categorie.Id;
 
             // Ajouter le produit à la base de données
             _context.Add(produitsModel);
@@ -87,6 +87,7 @@ namespace Mercadona.Controllers
             {
                 return NotFound();
             }
+            InitializeCategoriesList(produitsModel);
             return View(produitsModel);
         }
 
@@ -102,27 +103,23 @@ namespace Mercadona.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _context.Update(produitsModel);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProduitsModelExists(produitsModel.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(produitsModel);
+                await _context.SaveChangesAsync();
             }
-            return View(produitsModel);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProduitsModelExists(produitsModel.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Produits/Delete/5

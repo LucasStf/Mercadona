@@ -14,18 +14,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="IdProduit" class="control-label"></label>
-                <input asp-for="IdProduit" class="form-control" />
+                @{
+                    <select asp-for="IdProduit" asp-items="@(new SelectList(Model.Produits, "Id", "libelle"))" class="form-control"></select>
+                }
                 <span asp-validation-for="IdProduit" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IdPromotion" class="control-label"></label>
-                <input asp-for="IdPromotion" class="form-control" />
+                @{
+                    <select asp-for="IdPromotion" asp-items="@(new SelectList(Model.Promotions, "Id", "Id"))" class="form-control"></select>
+                }
                 <span asp-validation-for="IdPromotion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="prixPromo" class="control-label"></label>
-                <input asp-for="prixPromo" class="form-control" />
-                <span asp-validation-for="prixPromo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -39,5 +38,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
