@@ -1,0 +1,32 @@
+﻿@model ProduitsViewModel
+
+@{
+    ViewData["Title"] = "Catalogue";
+}
+
+<h1 class="mb-4">@ViewData["Title"]</h1>
+
+<div class="row">
+    @foreach (var produit in Model.Produits)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="@produit.url_image">
+                <div class="card-body">
+                    <h5 class="card-title">@produit.libelle</h5>
+                    <p class="card-text">@produit.description</p>
+                    @if (Model.promotionsProduitsModels.Any(p => p.IdProduit == produit.Id))
+                    {
+                        var promotion = Model.promotionsProduitsModels.FirstOrDefault(p => p.IdProduit == produit.Id);
+                        <p class="card-text"><strong>Prix: </strong><span class="original-price text-muted" style="text-decoration: line-through">@produit.prix €</span> <span class="promo-price text-danger">@promotion.prixPromo €</span></p>
+                    }
+                    else
+                    {
+                        <p class="card-text"><strong>Prix: </strong>@produit.prix €</p>
+                    }
+                    <a href="#" class="btn btn-primary">Ajouter au panier</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
