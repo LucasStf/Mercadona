@@ -16,3 +16,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+#footer-content img {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
