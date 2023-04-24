@@ -22,3 +22,18 @@ body {
     top: 8px;
     right: 8px;
 }
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+
+.image-index {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}

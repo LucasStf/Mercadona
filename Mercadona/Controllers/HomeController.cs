@@ -22,7 +22,7 @@ namespace Mercadona.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult CGU()
         {
             return View();
         }
@@ -31,11 +31,13 @@ namespace Mercadona.Controllers
         {
             var produits = await _context.Produits.ToListAsync();
             var promotionsProduits = await _context.PromotionsProduits.ToListAsync();
+            var promotions = await _context.Promotions.ToListAsync();
 
             var viewModel = new ProduitsViewModel
             {
                 Produits = produits,
-                promotionsProduitsModels = promotionsProduits
+                promotionsProduitsModels = promotionsProduits,
+                promotions = promotions
             };
 
             return View(viewModel);

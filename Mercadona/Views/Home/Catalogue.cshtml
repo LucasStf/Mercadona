@@ -17,9 +17,14 @@
                     <p class="card-text">@produit.description</p>
                     @if (Model.promotionsProduitsModels.Any(p => p.IdProduit == produit.Id))
                     {
-                        var promotion = Model.promotionsProduitsModels.FirstOrDefault(p => p.IdProduit == produit.Id);
-                        <p class="card-text"><strong>Prix: </strong><span class="original-price text-muted" style="text-decoration: line-through">@produit.prix €</span> <span class="promo-price text-danger">@promotion.prixPromo €</span></p>
+                        var promotionproduit = Model.promotionsProduitsModels.FirstOrDefault(p => p.IdProduit == produit.Id);
+                        <p class="card-text"><strong>Prix: </strong><span class="original-price text-muted" style="text-decoration: line-through">@produit.prix €</span> <span class="promo-price text-danger">@promotionproduit.prixPromo €</span></p>
+
+                        var promo = Model.promotions.First(p => p.Id == promotionproduit.IdPromotion);
+                        <p class="card-text">Remise de : @promo.PourcentageRemise %</p>
+                        <p class="card-text">Valable du @promo.DateDebut au @promo.DateFin</p>
                     }
+
                     else
                     {
                         <p class="card-text"><strong>Prix: </strong>@produit.prix €</p>
