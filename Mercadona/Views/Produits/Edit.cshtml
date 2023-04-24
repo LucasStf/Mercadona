@@ -6,7 +6,6 @@
 
 <h1>Edit</h1>
 
-<h4>ProduitsModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,22 +13,22 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="libelle" class="control-label"></label>
+                <label class="control-label">Nom</label>
                 <input asp-for="libelle" class="form-control" />
                 <span asp-validation-for="libelle" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="description" class="control-label"></label>
+                <label class="control-label">Description</label>
                 <input asp-for="description" class="form-control" />
                 <span asp-validation-for="description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="prix" class="control-label"></label>
+                <label class="control-label">Prix</label>
                 <input asp-for="prix" class="form-control" />
                 <span asp-validation-for="prix" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="id_categorie" class="control-label"></label>
+                <label class="control-label">Catégorie</label>
                 @{
                     if (Model.CategoriesList != null)
                     {
@@ -43,7 +42,7 @@
                 <span asp-validation-for="id_categorie" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="url_image" class="control-label"></label>
+                <label class="control-label">Url de l'image</label>
                 <input asp-for="url_image" class="form-control" />
                 <span asp-validation-for="url_image" class="text-danger"></span>
             </div>
@@ -55,7 +54,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Retour à la liste</a>
 </div>
 
 @section Scripts {

@@ -3,31 +3,32 @@
 }
 
 <h1>@ViewData["Title"]</h1>
+<link href="~/css/site.css" rel="stylesheet">
 
 <div class="card-group">
     <div class="card">
-        <img class="card-img-top" src="https://via.placeholder.com/150x150.png?text=Produits" alt="Card image cap">
+        <img class="card-img-top img-thumbnail" src="~/images/produit.svg" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">Gérer les produits</h5>
             <a asp-controller="Produits" asp-action="Index" class="btn btn-primary">Accéder</a>
         </div>
     </div>
     <div class="card">
-        <img class="card-img-top" src="https://via.placeholder.com/150x150.png?text=Promotions" alt="Card image cap">
+        <img class="card-img-top" src="~/images/promotion.svg" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">Gérer les promotions</h5>
             <a asp-controller="Promotions" asp-action="Index" class="btn btn-primary">Accéder</a>
         </div>
     </div>
     <div class="card">
-        <img class="card-img-top" src="https://via.placeholder.com/150x150.png?text=Produits+en+promotion" alt="Card image cap">
+        <img class="card-img-top" src="~/images/produitpromotion.svg" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">Gérer les produits en promotion</h5>
             <a asp-controller="PromotionsProduits" asp-action="Index" class="btn btn-primary">Accéder</a>
         </div>
     </div>
     <div class="card">
-        <img class="card-img-top" src="https://via.placeholder.com/150x150.png?text=Catégories" alt="Card image cap">
+        <img class="card-img-top" src="~/images/categorie.svg" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">Gérer les catégories</h5>
             <a asp-controller="Categorie" asp-action="Index" class="btn btn-primary">Accéder</a>

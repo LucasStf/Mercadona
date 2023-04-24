@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Mercadona.Models.ProduitsModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Produits";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Créer un produit</a>
 </p>
 <table class="table">
     <thead>
@@ -51,7 +51,7 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
             </td>
         </tr>
 }

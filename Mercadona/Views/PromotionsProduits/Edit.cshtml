@@ -6,7 +6,6 @@
 
 <h1>Edit</h1>
 
-<h4>PromotionsProduitsModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,7 +13,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="IdProduit" class="control-label"></label>
+                <label class="control-label">Produit</label>
                 <input asp-for="IdProduit" class="form-control" />
                 <span asp-validation-for="IdProduit" class="text-danger"></span>
             </div>
@@ -36,7 +35,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Retour à la liste</a>
 </div>
 
 @section Scripts {
