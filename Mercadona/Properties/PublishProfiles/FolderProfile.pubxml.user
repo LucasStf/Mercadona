@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\strafe\source\repos\Mercadona\Mercadona\bin\Release\net6.0\publish\</_PublishTargetUrl>
+    <History>True|2023-04-24T20:49:49.3728097Z;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Host=45.155.171.219%3b port=5432%3b Database=postgres%3b Username=postgres%3b Password=SSBxSpyRe83i</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
