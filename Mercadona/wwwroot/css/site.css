@@ -34,13 +34,8 @@ body {
     object-fit: cover;
 }
 
-.image-index {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
+.img-fluid{
+    max-width: 100%;
 }
 
 .banner-texte {
