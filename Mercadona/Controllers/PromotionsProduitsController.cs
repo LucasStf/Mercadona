@@ -101,6 +101,8 @@ namespace Mercadona.Controllers
             {
                 return NotFound();
             }
+            InitializeProduits(promotionsProduitsModel);
+            InitializePromotions(promotionsProduitsModel);
             return View(promotionsProduitsModel);
         }
 
@@ -116,10 +118,17 @@ namespace Mercadona.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+
                 try
                 {
+                    var produit = _context.Produits.Find(promotionsProduitsModel.IdProduit);
+                    var promotion = _context.Promotions.Find(promotionsProduitsModel.IdPromotion);
+
+                    // Calculer le prix en promotion
+                    var prixEnPromo = produit.prix - (produit.prix * promotion.PourcentageRemise / 100);
+
+                    promotionsProduitsModel.prixPromo = (int)prixEnPromo;
+
                     _context.Update(promotionsProduitsModel);
                     await _context.SaveChangesAsync();
                 }
@@ -135,8 +144,8 @@ namespace Mercadona.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            return View(promotionsProduitsModel);
+            
+            
         }
 
         // GET: PromotionsProduits/Delete/5
