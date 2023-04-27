@@ -27,21 +27,31 @@ namespace Mercadona.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Catalogue()
+        public async Task<IActionResult> Catalogue(int? categorie)
         {
-            var produits = await _context.Produits.ToListAsync();
+            var produits = _context.Produits.Include(p => p.CategoriesList).AsQueryable();
             var promotionsProduits = await _context.PromotionsProduits.ToListAsync();
             var promotions = await _context.Promotions.ToListAsync();
+            var categories = await _context.Categorie.ToListAsync();
+
+            if (categorie != null)
+            {
+                var categorie_by_id = categories.FirstOrDefault(c => c.Id == categorie);
+                produits = produits.Where(p => p.id_categorie == categorie_by_id.Id);
+            }
 
             var viewModel = new ProduitsViewModel
             {
-                Produits = produits,
+                Produits = produits.ToList(),
                 promotionsProduitsModels = promotionsProduits,
-                promotions = promotions
+                promotions = promotions,
+                CategoriesList = categories
             };
 
             return View(viewModel);
         }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -8,6 +8,23 @@
 
 <h1 class="mb-4">@ViewData["Title"]</h1>
 
+<form asp-action="Catalogue" method="get">
+    <div class="form-group">
+        <label for="categorie">Catégorie:</label>
+        <select id="categorie" name="categorie" class="form-control">
+            <option value="">Toutes les catégories</option>
+            @foreach (var categorie in Model.CategoriesList)
+            {
+                <option value="@categorie.Id">@categorie.libelle</option>
+            }
+        </select>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Filtrer</button>
+</form>
+
+<br/>
+
 <div class="row">
     @foreach (var produit in Model.Produits)
     {
@@ -19,14 +36,13 @@
                     <p class="card-text">@produit.description</p>
                     @if (Model.promotionsProduitsModels.Any(p => p.IdProduit == produit.Id))
                     {
+
                         var promotionproduit = Model.promotionsProduitsModels.FirstOrDefault(p => p.IdProduit == produit.Id);
-                        <p class="card-text"><strong>Prix: </strong><span class="original-price text-muted" style="text-decoration: line-through">@produit.prix €</span> <span class="promo-price text-danger">@promotionproduit.prixPromo €</span></p>
-
                         var promo = Model.promotions.First(p => p.Id == promotionproduit.IdPromotion);
-                        <p class="card-text">Remise de : @promo.PourcentageRemise %</p>
-                        <p class="card-text">Valable du @promo.DateDebut au @promo.DateFin</p>
-                    }
+                        <p class="card-text"><strong>Prix: </strong><span class="original-price text-muted" style="text-decoration: line-through">@produit.prix €</span> <span class="promo-price text-danger">@promotionproduit.prixPromo € (@promo.PourcentageRemise %)</span></p>
 
+                        <p class="card-text">Valable du @promo.DateDebut.ToString("dd/MM/yyyy") au @promo.DateFin.ToString("dd/MM/yyyy")</p>
+                    }
                     else
                     {
                         <p class="card-text"><strong>Prix: </strong>@produit.prix €</p>

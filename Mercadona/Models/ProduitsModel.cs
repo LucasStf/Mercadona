@@ -8,6 +8,8 @@
         public List<PromotionsProduitsModel> promotionsProduitsModels { get; set; }
 
         public List<PromotionsModel> promotions { get; set; }
+
+        public List<CategorieModel> CategoriesList { get; set; }
     }
 
     public class ProduitsModel
