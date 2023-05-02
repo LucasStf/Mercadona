@@ -81,7 +81,7 @@ namespace Mercadona.Controllers
             // Calculer le prix en promotion
             var prixEnPromo = produit.prix - (produit.prix * promotion.PourcentageRemise / 100);
 
-            promotionsProduitsModel.prixPromo = (int)prixEnPromo;
+            promotionsProduitsModel.prixPromo = prixEnPromo;
 
             _context.Add(promotionsProduitsModel);
             await _context.SaveChangesAsync();
@@ -127,7 +127,7 @@ namespace Mercadona.Controllers
                     // Calculer le prix en promotion
                     var prixEnPromo = produit.prix - (produit.prix * promotion.PourcentageRemise / 100);
 
-                    promotionsProduitsModel.prixPromo = (int)prixEnPromo;
+                    promotionsProduitsModel.prixPromo = prixEnPromo;
 
                     _context.Update(promotionsProduitsModel);
                     await _context.SaveChangesAsync();
