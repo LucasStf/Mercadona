@@ -1,4 +1,5 @@
 name: Générer et déployer une application .NET Core sur l'application web Mercadona20230425233536
+
 on:
   push:
     branches:
@@ -13,6 +14,8 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+    - name: Azure Login
+      uses: Azure/login@v1
     - uses: actions/checkout@v3
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v3
@@ -31,6 +34,7 @@ jobs:
       with:
         name: webapp
         path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
   deploy:
     runs-on: windows-latest
     needs: build
@@ -40,6 +44,8 @@ jobs:
       with:
         name: webapp
         path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+    - name: Azure Login
+      uses: Azure/login@v1    
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
       with:
